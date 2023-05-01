@@ -8,7 +8,7 @@ inquirer
     {
       type: "input",
       message: "What are 3 characters for you text?",
-      name: "characters",
+      name: "text",
     },
     {
       type: "input",
@@ -38,10 +38,11 @@ inquirer
     }
     shape.setColor(response.shapeColor);
 
-    let svg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n
-    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"> \n
-    <svg width="300" height="100">`;
+    let svg = `<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">`;
     svg = svg + shape.render();
+    svg =
+      svg +
+      `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${response.textColor}">${response.text}</text>`;
     svg = svg + "</svg>";
     fs.writeFileSync("logo.svg", svg);
   });
